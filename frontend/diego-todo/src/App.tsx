@@ -1,35 +1,46 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from 'react';
+import './App.css';
+import { Todo as TodoType } from './types';
+import Todo from './components/Todo';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const todos: TodoType[] = [
+    {
+      id: 1,
+      name: 'Todo 1',
+      description: 'Todo 1 description',
+      done: false,
+      project: 1,
+      dueDate: new Date(),
+      createdAt: new Date(),
+    },
+    {
+      id: 2,
+      name: 'Todo 2',
+      description: 'Todo 2 description',
+      done: false,
+      project: 1,
+      dueDate: new Date(),
+      createdAt: new Date(),
+    },
+    {
+      id: 3,
+      name: 'Todo 2',
+      description: 'Todo 2 description',
+      done: false,
+      project: 1,
+      dueDate: new Date(),
+      createdAt: new Date(),
+    },
+  ];
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <main>
+      {todos.map((todo) => (
+        <Todo key={todo.id} todo={todo} />
+      ))}
+    </main>
+  );
 }
 
-export default App
+export default App;
