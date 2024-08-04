@@ -2,14 +2,22 @@ import { asc, between, count, eq, getTableColumns, sql } from 'drizzle-orm';
 import { db } from '../db';
 import { SelectProject, SelectTodo, todos, projects } from '../schema';
 
-export async function getProjects(id: SelectProject['id']): Promise<
+export async function getProjects(): Promise<
   Array<{
     id: number;
     name: string;
   }>
 > {
-  return db.select().from(projects).where(eq(projects.id, id));
+  return db.select().from(projects).orderBy(asc(projects.id));
 }
+// export async function getProjects(id: SelectProject['id']): Promise<
+//   Array<{
+//     id: number;
+//     name: string;
+//   }>
+// > {
+//   return db.select().from(projects).where(eq(projects.id, id));
+// }
 
 export async function getTodos(id: SelectTodo['id']): Promise<
   Array<{
